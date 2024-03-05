@@ -1,0 +1,16 @@
+{
+  "name": "alx-backend-javascript",
+  "version": "1.0.0",
+  "description": "A repo created specifically for alx's back end Javascript tasks Start of JavaScript back end with alx:",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependancies": {
+	  "@babel/core": "^7.16.0",
+	  "@babel/present-env": "^7.16.0"
+  }
+}
