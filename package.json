@@ -9,8 +9,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependancies": {
+  "devDependencies": {
 	  "@babel/core": "^7.16.0",
-	  "@babel/present-env": "^7.16.0"
+	  "@babel/present-env": "^7.16.5",
+    "babel-jest": "^27.4.5",
+    "eslint": "^8.3.0",
+    "eslint-config-airbnb-base": "17.1.1",
+    "eslint-plugin-import": "2.29.1",
+    "jest": "29.7.0"
   }
 }
