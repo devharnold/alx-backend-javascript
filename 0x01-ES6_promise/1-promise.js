@@ -3,7 +3,7 @@ function getFullResponseFromAPI() {
         if (success) {
             resolve({ status: 200, body: 'photo-profile-1' });
         } else {
-            reject("The fake API is not running currently");
+            reject(new Error("The fake API is not running currently"));
         }
     });
 }
