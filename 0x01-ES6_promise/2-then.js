@@ -1,13 +1,9 @@
-function handleResponseFromAPI() {
-    return new Promise((resolve, reject) => {
-        if (success) {
-            resolve({ status: 200, body: 'photo-profile-1'});
-        } else {
-            reject(new Error("The fake API is not currently running"));
-        }
+function handleResponseFromAPI(promise){
+    return promise.then((result) => {
+        console.log("Got a response from the API to the console");
+        return { status: 200, body: 'success'};
+    }).catch((error) => {
+        console.error("Error occured:", error.message);
+        return new Error();
     });
 }
-handleResponseFromAPI()
-    .then((result) => {
-        console.log("Got a response from the API to the console");
-    })
