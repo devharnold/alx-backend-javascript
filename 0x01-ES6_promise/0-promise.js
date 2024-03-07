@@ -1,9 +1,3 @@
-function getResponseFromAPI() {
-    const promise = new Promise((resolve, reject) => {
-        if (success) {
-            resolve(value);
-        } else {
-            reject(error);
-        }
-    });
+export default function getFullResponseFromAPI() {
+    return new Promise(() => {});
 }
