@@ -1,6 +1,6 @@
 import Classroom from "./0-classroom";
 
-class ClassRoom2 extends Classroom{
+export default class ClassRoom2 extends Classroom{
     constructor(initializeRooms) {
         this.rooms = [];
     }
