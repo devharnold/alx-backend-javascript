@@ -4,7 +4,7 @@
  * must use the filter function on the array.
  * returns:{Array} of objects
  */
-export default function getStudentsByLocation(location, city) {
+export default function getStudentsByLocation(students, city) {
     if (students instanceof Array) {
         return students.filter((students) => students.location === city);
     }
