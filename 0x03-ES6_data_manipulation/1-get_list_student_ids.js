@@ -4,7 +4,7 @@
  * @returns {Array} of students IDS
  */
 
-export default function getListStudentIds(students, ids) {
+export default function getListStudentIds(students, id) {
     if (students instanceof Array) {
         return students.map((student) => students.id);
     }
