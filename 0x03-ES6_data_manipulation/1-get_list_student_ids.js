@@ -1,7 +1,12 @@
-// function getListStudentIds -> returns an array of ids
-// takes one argument, array of objects, same format as getListStudents
-// must use the map() function on the array
+/**
+ * Retrieves an array of Student IDs from students objects
+ * @param {Array} - Array of Objects
+ * @returns {Array} of students IDS
+ */
 
-export default function getListStudentIds {
-    
+export default function getListStudentIds(students) {
+    if (students instanceof Array) {
+        return students.map((student) => students.id);
+    }
+    return [];
 }
