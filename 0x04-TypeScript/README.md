@@ -1,0 +1,1 @@
+Start of learning TypeScript for JavaScript Developers
