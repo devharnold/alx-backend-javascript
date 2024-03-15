@@ -2,13 +2,12 @@
 // should accept 3 arguments
 
 export default function createInt8TypedArray(length, position, value) {
-    let buffer = new ArrayBuffer(length);
-    let int8Array= new Int8Array(buffer);
-
-    if (position >= 0 && position < length) {
-        int8Array[position] = value;
-    } else {
-        throw new Error("Position is outside range");
+    if (position < 0 || position  >= length) {
+        throw new Error('Position outside range')
     }
+    const buffer = new ArrayBuffer(length);
+    const int8Array = new Int8Array(buffer);
+
+    int8Array[position] = value;
     return buffer;
 }
