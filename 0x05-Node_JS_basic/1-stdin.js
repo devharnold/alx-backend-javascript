@@ -19,3 +19,5 @@ async function main() {
     displayMessage("This important software is now closing");
 }
 main();
+
+modules.exports = getUserInput;
