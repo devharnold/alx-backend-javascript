@@ -1,23 +1,13 @@
-function displayMessage(message) {
-    console.log(message);
-}
+process.stdout.write('Welcome to Holberton School, what is your name?\n');
 
-function getUserInput() {
-    return new Promise((resolve, reject) => {
-        process.stdin.once('data', (data) => {
-            resolve(data.toString().trim());
-        });
-    });
-}
+process.stdin.on('readable', () => {
+    const chunk = process.stdin.read();
 
-async function main() {
-    displayMessage("Welcome to Holberton School, what is your name?");
-    const name = await getUserInput();
-    //display the user's name
-    displayMessage(`Your name is: ${name}`);
-    //display the closing message
-    displayMessage("This important software is now closing");
-}
-main();
+    if (chunk) {
+        process.stdout.write(`Your name is: ${chunk}`);
+    }
+});
 
-modules.exports = getUserInput;
+process.stdin.on('end', () => {
+    process.stdout.write('This important software is now closing\n');
+});
