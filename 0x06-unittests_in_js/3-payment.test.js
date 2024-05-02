@@ -3,13 +3,13 @@ const Utils = require('./utils');
 const {expect} = require('chai');
 const sendPaymentRequestToApi = require('./3-payment');
 
-describe('sendPaymentRequestToApi', () => {
-    it('should return 10', () => {
-        const stub = sinon.stub(Utils, 'calculateNumber').returns(10);
-        
-        const total = sendPaymentRequestToApi(100, 10);
-        expect(total).to.equal(10);
-        expect(stub.calledOnceWithExactly('SUM', 100, 10)).to.be.true;
-        stub.restore();
+describe('sendPaymentRequestToAPI', () => {
+    it('sendPaymentRequestToAPI', () => {
+        const bigBrother = sinon.spy(Utils);
+
+        sendPaymentRequestToApi(100, 20);
+        expect(bigBrother.calledWith('SUM', 100, 20)).to.be.true;
+        expect(bigBrother.calculateNumber.callCount).to.be.equal(1);
+        bigBrother.calculateNumber.restore();
     });
-    });
+});
