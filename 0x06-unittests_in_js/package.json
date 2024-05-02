@@ -4,7 +4,7 @@
   "description": "Unittest backend project from alx",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require @babel/register"
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",
