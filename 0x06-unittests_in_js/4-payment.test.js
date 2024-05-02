@@ -4,12 +4,17 @@ const {expect} = require('chai');
 const sendPaymentRequestToApi = require('./4-payment');
 
 describe('sendPaymentRequestToApi', () => {
-    it('should return 10', () => {
-        const stub = sinon.stub(Utils, 'calculateNumber').returns(10);
-        
-        const total = sendPaymentRequestToApi(100, 10);
-        expect(total).to.equal(10);
-        expect(stub.calledOnceWithExactly('SUM', 100, 10)).to.be.true;
-        stub.restore();
+    it('sendPaymentRequestToApi calls console.log witht the right arguments', () => {
+        const bigBrother = sinon.spy(console);
+        const dummy = sinon.stub(Utils, 'calculateNumber')
+
+        dummy.returns(10);
+        sendPaymentRequestToApi(100, 20);
+        expect(dummy.calledWith('SUM', 100, 20)).to.be.true;
+        expect(dummy.callCount).to.be.equal(1);
+        expect(bigBrother.calledWith('The total is: 10')).to.be.true;
+        expect(bigBrother.log.callCount).to.be.equal(1);
+        dummy.restore();
+        bigBrother.log.restore();
     });
-    });
+});
