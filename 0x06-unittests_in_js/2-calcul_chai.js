@@ -17,3 +17,5 @@ export function calculateNumber(type, a, b) {
         return 'Invalid type';
     }
 }
+
+module.exports = calculateNumber;
