@@ -37,3 +37,5 @@ app.on('request', (req, res) => {
         res.end('Not Found');
     }
 });
+
+module.exports = app;
