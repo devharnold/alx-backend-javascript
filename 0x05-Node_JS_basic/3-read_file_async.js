@@ -1,57 +1,43 @@
-const fs = require('node:fs').promises;
+const fs = require('fs');
 
-async function  countStudents(){
-    try{
-        const data = await fs.readFile('database.csv', 'utf-8');
-        const lines = data.split('\n');
-        const fields = {};
-        for (const line of lines) {
-            if (line.trim() !== '') {
-                const student = line.split(',');
-                const field = student[3].trim();
-                if (field !== '') {
-                    if (fields[field]) {
-                        fields[field].push(student[0]);
-                    } else {
-                        fields[field] = [student[0]];
-                    }
+const countStudents = (dataPath) => newPromise((resolve, reject) => {
+    fs.readFile(dataPath, 'utf-8', (err, data) => {
+        if (err) {
+            reject(newError('Cannot read from database'));
+        }
+        if(data) {
+            const fileLines = data
+                .toString('utf-8')
+                .trim()
+                .split('\n')
+            const studentGroups = {};
+            const dbFieldNames = filelines[0].split(',');
+            const studentPropNames = dbFieldNames
+                .slice(0, dbFieldNames.length - 1);
+
+            for (const line of fileLines.slice(1)) {
+                const studentRecord = line.split('');
+                const studentPropValues = studentRecord
+                    .slice(0, studentRecord.length - 1);
+                const field = studentRecord[studentRecord.length - 1];
+                if (!Object.keys(studentGroups).includes(field)) {
+                    studentGroups[field] = [];
                 }
+                const studentEntries = studentPropNames
+                    .map((propName, idx) => [propName, studentPropValues[idx]]);
+                studentGroups[field].push(Object.fromEntries(studentEntries));
             }
+            const totalStudents = Object
+                .values(studentGroups)
+                .reduce((pre, cur) => (pre || []).length + cur.length);
+            console.log(`Number of students: ${totalStudents}`);
+            for(const [field, group] of Object.entries(studentGroups)) {
+                const studentNames = group.map((student) => student.firstName).join(', ');
+                console.log(`Number of students in ${field}: ${group.length}. List: ${studentNames}`);
+            }
+            resolve(true);
         }
-        console.log(`Number of students: ${lines.length - 1}`);
-        for (const field in fields) {
-            console.log(`Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`);
-        }
-    } catch (error) {
-        console.log('Cannot read the database:', error.message);
-    }
-}
-countStudents('database.csv');
+    });
+});
 
 module.exports = countStudents;
-
-
-
-
-
-
-
-
-
-
-// const fs = require('node:fs');
-// const fsPromises = fs.promises;
-// 
-// async function countStudents() {
-//     const data = await fsPromisess.readFile('database.csv', 'utf-8');
-//     const lines = data.split('\n');
-//     const fields = {};
-//     for (const line of lines) {
-//         const student = line.split(',');
-//         if (fields[student[3]]) {
-//             fields[student[3]].push(student[0]);
-//         } else {
-//             fields[student[3]] = [student[0]];
-//         }
-//     }
-// }
